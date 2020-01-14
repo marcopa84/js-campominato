@@ -7,23 +7,72 @@
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 
 var numeriRandom = [];
+var numeriUtente = [];
+var numeriOk = 0;
+var erroriInput = 1;
+var trovatoNumeroVietato = false;
 
-//TO DO VERIFICARE LA CORRETTA CREAZIONE DEI NUMERI CHE POTREBBERO ESSERE DUPLICATI
-var i = 0;
-while (i < 16) {
-  var numeroEstratto = getRandomIntInclusive(1,20);
-  if (numeroEstratto != numeriRandom[i]){
+while (numeriRandom.length < 16) {
+  var numeroEstratto = getRandomIntInclusive(1,100);
+  if(numeriRandom.includes(numeroEstratto) == false){
     numeriRandom.push(numeroEstratto);
-    i++;
   }
-  else {
-    i--;
-    // numeriRandom.pop();
+}
+console.log(numeriRandom);
+
+while (numeriUtente.length < 84 && erroriInput <= 5 && trovatoNumeroVietato == false) {
+  // chiedo il numero all utente
+  var numeroUtenteSingolo = parseInt(prompt('inserisci il numero da 1 a 100'));
+
+  // se è diverso lo inserisco nell'array
+  if(numeriUtente.includes(numeroUtenteSingolo) == false){
+    numeriUtente.push(numeroUtenteSingolo);
+    numeriOk +=1;
+
+    // Controllo se il numero è presente nei numeri random
+    var i = 0;
+    while (i < numeriRandom.length && numeriUtente != numeriRandom[i]){
+      if (numeroUtenteSingolo != numeriRandom[i]) {
+        console.log(numeriOk);
+        console.log('comparazione OK');
+      }
+      else if (numeroUtenteSingolo == numeriRandom[i]) {
+        trovatoNumeroVietato = true;
+        console.log('comparazione NO');
+        alert('HAI PERSO! ne hai indovinati: ' + numeriOk);
+        console.log(numeriOk);
+      }
+      i++
+    }
+    // for (var i = 0; i < numeriRandom.length; i++) {
+    //   var risultato = '';
+    //   if (numeriUtente != numeriRandom [i]) {
+    //     risultato = true;
+    //     console.log('comparazione OK');
+    //   }
+    //   else if (numeriUtente == numeriRandom [i]) {
+    //     risultato = false;
+    //     console.log('comparazione NO');
+    //   }
+    // }
   }
-  console.log(numeroEstratto);
+
+  // se è uguale mando un allert
+  else{
+    alert('NUMERO GIA\' PRESENTE! hai commesso errori per nr. ' + erroriInput + ' volte');
+    erroriInput += 1;
+  }
+
+
+  // Troppi errori
+  if (erroriInput > 5) {
+    alert('ATTENZIONE! hai commesso 5 errori, vatti a fare una passeggiata e poi ci rivediamo!');
+  }
+  console.log(numeriUtente);
 }
 
-console.log(numeriRandom);
+
+
 
 // Funzione generazione numero random
 function getRandomIntInclusive(min, max) {
