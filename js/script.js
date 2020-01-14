@@ -1,32 +1,33 @@
-// Blocco 2 Snack1
-// Inserisci un numero, se è pari stampa il numero, se è dispari
-// stampa il numero successivo
+// Il computer deve generare 16 numeri casuali da 1 a 100.
 
-var numeroUtente = parseInt(prompt('Inserisci un numero:'));
+// In seguito deve chiedere all’utente di inserire per 84 volte un numero da 1 a 100, se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti continua chiedendo all’utente un altro numero.
 
-function isEven(numero) {
-  var messaggio
-  if (numero % 2 == 0){
-    console.log(numero)
-    return messaggio = (numero);
+// La partita termina quando il giocatore inserisce un numero “vietato”, ovvero presente nella lista di numeri random, o raggiunge il numero massimo possibile di tentativi consentiti.
+
+// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
+
+var numeriRandom = [];
+
+//TO DO VERIFICARE LA CORRETTA CREAZIONE DEI NUMERI CHE POTREBBERO ESSERE DUPLICATI
+var i = 0;
+while (i < 16) {
+  var numeroEstratto = getRandomIntInclusive(1,20);
+  if (numeroEstratto != numeriRandom[i]){
+    numeriRandom.push(numeroEstratto);
+    i++;
   }
   else {
-    console.log(numero + 1);
-    return messaggio = (numero + 1);
+    i--;
+    // numeriRandom.pop();
   }
+  console.log(numeroEstratto);
 }
 
+console.log(numeriRandom);
 
-var risultato = isEven(numeroUtente);
-console.log('risultato',risultato);
-
-//CHIARA//
-
-// var numeroUtente = parseInt(prompt('Inserisci un numero:'));
-// console.log(numeroUtente);
-// if (numeroUtente % 2 == 0){
-//     console.log(numeroUtente)
-//   }
-//   else {
-//     console.log(numeroUtente + 1);
-//   }
+// Funzione generazione numero random
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
