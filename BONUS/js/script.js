@@ -29,6 +29,8 @@ if (difficolta == 1){
 } else if (difficolta == 2){
   numeriMassimi = 50;
   tentativi = 34;
+} else {
+  alert('Hai immesso un valore di difficoltà non valido! Giocherai al livello 0!')
 }
 console.log(numeriMassimi);
 console.log(tentativi);
