@@ -33,28 +33,13 @@ while (numeriUtente.length < 84 && erroriInput <= 5 && trovatoNumeroVietato == f
     var i = 0;
     while (i < numeriRandom.length && numeriUtente != numeriRandom[i]){
       if (numeroUtenteSingolo != numeriRandom[i]) {
-        console.log(numeriOk);
-        console.log('comparazione OK');
       }
       else if (numeroUtenteSingolo == numeriRandom[i]) {
         trovatoNumeroVietato = true;
-        console.log('comparazione NO');
         alert('HAI PERSO! ne hai indovinati: ' + numeriOk);
-        console.log(numeriOk);
       }
       i++
     }
-    // for (var i = 0; i < numeriRandom.length; i++) {
-    //   var risultato = '';
-    //   if (numeriUtente != numeriRandom [i]) {
-    //     risultato = true;
-    //     console.log('comparazione OK');
-    //   }
-    //   else if (numeriUtente == numeriRandom [i]) {
-    //     risultato = false;
-    //     console.log('comparazione NO');
-    //   }
-    // }
   }
 
   // se è uguale mando un allert
