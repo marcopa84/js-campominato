@@ -44,10 +44,14 @@ console.log(numeriRandom);
 
 while (numeriUtente.length < tentativi && erroriInput <= 5 && trovatoNumeroVietato == false) {
   // chiedo il numero all utente
-  var numeroUtenteSingolo = parseInt(prompt('inserisci il numero da 1 a 100'));
+
+  var resultRange = false;
+  do{
+    var numeroUtenteSingolo = parseInt(prompt('inserisci il numero da 1 a ' + numeriMassimi));
+  } while(checkRangeNumber(1, numeriMassimi, numeroUtenteSingolo) == false)
 
   // se è diverso lo inserisco nell'array
-  if(numeriUtente.includes(numeroUtenteSingolo) == false){
+  if(numeriUtente.includes(numeroUtenteSingolo) == false && resultRange == false){
     numeriUtente.push(numeroUtenteSingolo);
     numeriOk +=1;
 
@@ -66,17 +70,6 @@ while (numeriUtente.length < tentativi && erroriInput <= 5 && trovatoNumeroVieta
       }
       i++
     }
-    // for (var i = 0; i < numeriRandom.length; i++) {
-    //   var risultato = '';
-    //   if (numeriUtente != numeriRandom [i]) {
-    //     risultato = true;
-    //     console.log('comparazione OK');
-    //   }
-    //   else if (numeriUtente == numeriRandom [i]) {
-    //     risultato = false;
-    //     console.log('comparazione NO');
-    //   }
-    // }
   }
 
   // se è uguale mando un allert
@@ -101,4 +94,12 @@ function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+//funzione che controlla che un numero sia in un certo range
+function checkRangeNumber(min, max, number) {
+  var resultRange = false;
+  if(number >= min && number <= max) {
+    resultRange = true;
+  }
+  return resultRange;
 }
